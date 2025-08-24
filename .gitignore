@@ -1,0 +1,15 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual envs
+.venv/
+
+# DVC cache/temp (code keeps only .dvc pointers)
+.dvc/tmp/
+
+# Local env files (use .env.example as template)
+.env
+
+# Other
+.idea
