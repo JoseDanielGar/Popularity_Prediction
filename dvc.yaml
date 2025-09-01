@@ -1,0 +1,11 @@
+stages:
+  cleaning:
+    cmd: python src/cleaning.py data/raw/dataset.csv
+    deps:
+    - data/raw/dataset.csv
+    - src/cleaning.py
+    params:
+    - prepare.seed
+    - prepare.split
+    outs:
+    - data/prep

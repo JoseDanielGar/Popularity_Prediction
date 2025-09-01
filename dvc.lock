@@ -1,0 +1,23 @@
+schema: '2.0'
+stages:
+  cleaning:
+    cmd: python src/cleaning.py data/raw/dataset.csv
+    deps:
+    - path: data/raw/dataset.csv
+      hash: md5
+      md5: 81c4699d70ecf480cda0081759db853a
+      size: 20118249
+    - path: src/cleaning.py
+      hash: md5
+      md5: da60b82e621cd5b08e7c5b28f7ffebee
+      size: 9127
+    params:
+      params.yaml:
+        prepare.seed: 20170428
+        prepare.split: 0.2
+    outs:
+    - path: data/prep
+      hash: md5
+      md5: 110bb493bbd0e21399141cef6ae3256b.dir
+      size: 10058238
+      nfiles: 1
