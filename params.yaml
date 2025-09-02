@@ -5,15 +5,8 @@ cleaning:
   remove_na: true
 
 prepare:
+  input_path: data/prep/dataset_cleaned.csv
+  output_path_train: data/train
+  output_path_test: data/test
   split: 0.20
-  seed: 20170428
-
-featurize:
-  max_features: 100
-  ngrams: 1
-
-train:
-  seed: 20170428
-  n_est: 50
-  min_split: 0.01
-
+  seed: 20250901

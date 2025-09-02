@@ -13,3 +13,6 @@ __pycache__/
 
 # Other
 .idea
+
+# MacOS
+.DS_Store

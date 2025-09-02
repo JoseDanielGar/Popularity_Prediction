@@ -4,8 +4,16 @@ stages:
     deps:
     - data/raw/dataset.csv
     - src/cleaning.py
+    outs:
+    - data/prep
+  prepare:
+    cmd: python src/prepare.py data/prep/dataset_cleaned.csv
+    deps:
+    - data/prep/dataset_cleaned.csv
+    - src/prepare.py
     params:
     - prepare.seed
     - prepare.split
     outs:
-    - data/prep
+    - data/train
+    - data/test
