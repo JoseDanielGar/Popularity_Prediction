@@ -11,10 +11,6 @@ stages:
       hash: md5
       md5: da60b82e621cd5b08e7c5b28f7ffebee
       size: 9127
-    params:
-      params.yaml:
-        prepare.seed: 20170428
-        prepare.split: 0.2
     outs:
     - path: data/prep
       hash: md5
