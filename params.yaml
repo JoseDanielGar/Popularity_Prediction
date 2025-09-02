@@ -1,0 +1,12 @@
+cleaning:
+  input_path: data/raw/dataset.csv
+  output_path: data/prep
+  remove_duplicates: true
+  remove_na: true
+
+prepare:
+  input_path: data/prep/dataset_cleaned.csv
+  output_path_train: data/train
+  output_path_test: data/test
+  split: 0.20
+  seed: 20250901
