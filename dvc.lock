@@ -40,6 +40,6 @@ stages:
       nfiles: 2
     - path: data/train
       hash: md5
-      md5: 711cf1e65fbbdb0570f51b3b9c7d3b13.dir
+      md5: 861cc5167e9871ca72b3fa328c6fae66.dir
       size: 13242505
       nfiles: 5
