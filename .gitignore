@@ -1,6 +1,7 @@
 # Python cache
 __pycache__/
 *.pyc
+.jython_cache/*
 
 # Virtual envs
 .venv/
@@ -17,6 +18,12 @@ node_modules/
 
 # MacOS
 .DS_Store
+
+# Model artifacts
+mlartifacts
+mlruns
+models
+*/.ipynb_checkpoints/**
 .idea/
 
 
