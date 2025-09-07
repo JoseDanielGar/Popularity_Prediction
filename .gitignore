@@ -14,6 +14,7 @@ __pycache__/
 
 # Other
 .idea
+node_modules/
 
 # MacOS
 .DS_Store
@@ -23,3 +24,6 @@ mlartifacts
 mlruns
 models
 */.ipynb_checkpoints/**
+.idea/
+
+
