@@ -13,7 +13,10 @@ __pycache__/
 
 # Other
 .idea
+node_modules/
 
 # MacOS
 .DS_Store
 .idea/
+
+
