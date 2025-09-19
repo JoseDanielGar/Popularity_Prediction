@@ -17,3 +17,11 @@ stages:
     outs:
     - data/train
     - data/test
+  train:
+    cmd: python src/train_xgboost_classifier.py
+    deps:
+    - data/train/X_train.csv
+    - data/train/y_train.csv
+    - src/train_xgboost_classifier.py
+    outs:
+    - models
