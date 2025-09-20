@@ -14,7 +14,7 @@ export default defineConfig({
     host: true,
     proxy: {
       "/api": {
-        target: "http://backend:8000",
+        target: import.meta.API_URL,
         changeOrigin: true,
       },
     },

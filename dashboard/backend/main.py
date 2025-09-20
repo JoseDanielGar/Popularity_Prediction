@@ -1,6 +1,7 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
+from fastapi import FastAPI, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel
 app = FastAPI()
 
 app.add_middleware(
@@ -32,3 +33,18 @@ def predict(features: SongFeatures):
     )
     score = max(0, min(1, score))
     return {"score": score}
+
+
+@app.get("/api/health")
+def health():
+    JSONResponse(
+        {
+            "app_name": "Song Popularity API",
+            "app_version": "1.0.0"
+        },
+        status.HTTP_200_OK
+    )
+
+@app.get("/")
+def app_socket():
+    return health()
