@@ -22,6 +22,6 @@ stages:
     deps:
     - data/train/X_train.csv
     - data/train/y_train.csv
-    - src/train_classifier.py
+    - src/train.py
     outs:
     - models
