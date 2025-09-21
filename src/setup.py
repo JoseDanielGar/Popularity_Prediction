@@ -15,8 +15,8 @@ long_description = DESCRIPTION
 
 about = {}
 ROOT_DIR = Path(__file__).resolve().parent
-REQUIREMENTS_DIR = ROOT_DIR / 'src'
-PACKAGE_DIR = ROOT_DIR / 'src/model'
+REQUIREMENTS_DIR = ROOT_DIR
+PACKAGE_DIR = ROOT_DIR / 'model'
 # VERSION como diccionario.
 with open(PACKAGE_DIR / "VERSION") as f:
     _version = f.read().strip()
