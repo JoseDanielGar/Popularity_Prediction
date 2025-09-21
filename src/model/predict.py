@@ -2,7 +2,7 @@ import numpy as np
 import pickle
 import joblib
 from sklearn.pipeline import Pipeline
-from config.core import ROOT
+from config.core import PACKAGE_ROOT
 import pandas as pd
 from typing import TypedDict
 
@@ -30,25 +30,13 @@ class PredictionOutput(TypedDict):
 
 def load_model():
     """Load the pre-trained model from disk."""
-    with open(ROOT / 'models/modelo_popularidad.pkl', 'rb') as model_file:
+    with open(PACKAGE_ROOT / 'trained/modelo_popularidad.pkl', 'rb') as model_file:
         model = pickle.load(model_file)
     return model
 
-def load_scalers():
-    """Load the pre-trained scalers from disk."""
-    with open(ROOT / 'data/train/scalers.joblib', 'rb') as scalers_file:
-        scalers = joblib.load(scalers_file)
-    return scalers
-
-def load_encoders():
-    """Load the pre-trained encoders from disk."""
-    with open(ROOT / 'data/train/encoders.joblib', 'rb') as encoders_file:
-        encoders = joblib.load(encoders_file)
-    return encoders
-
 def load_preprocessor():
     """Load the pre-trained preprocessor from disk."""
-    with open(ROOT / 'data/train/preprocessor.joblib', 'rb') as preprocessor_file:
+    with open(PACKAGE_ROOT / 'trained/preprocessor.joblib', 'rb') as preprocessor_file:
         preprocessor = joblib.load(preprocessor_file)
     return preprocessor
 
@@ -60,17 +48,7 @@ def initialize_pipeline() -> Pipeline:
     Pipeline: A scikit-learn Pipeline object containing the loaded model, scalers, and encoders.
   """
   model = load_model()
-  scalers = load_scalers()
-  encoders = load_encoders()
   preprocessor = load_preprocessor()
-
-  scalers['duration_ms_scaler'].transform([[1.01e-06]])
-  scalers['loudness_scaler'].transform([[-6.746]])
-  scalers['tempo_scaler'].transform([[87.917]])
-
-  encoders['key_label_encoder'].transform(['1'])
-  encoders['track_genre_label_encoder'].transform(['acoustic'])
-
   pipeline_steps = [
     ('preprocess', preprocessor),
     ('model', model)
@@ -136,7 +114,7 @@ def predict_popularity(input: InputFeatures) -> PredictionOutput:
 PIPELINE = initialize_pipeline()
 print("✓ Modelo cargado exitosamente!")
 print(f"  • Modelo: {type(PIPELINE['model']).__name__}")
-""" data = {
+data = {
   "duration_ms": [230666],
   "explicit": [False],
   "danceability": [0.676],
@@ -160,4 +138,4 @@ y_pred, y_proba = predict_multiclass_popularity(df)
 print(y_pred)
 print(y_proba)
 popularity = predict_popularity(data)
-print(popularity) """
+print(popularity)

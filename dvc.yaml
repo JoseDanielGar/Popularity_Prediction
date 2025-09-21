@@ -23,5 +23,3 @@ stages:
     - data/train/X_train.csv
     - data/train/y_train.csv
     - src/model/train.py
-    outs:
-    - models

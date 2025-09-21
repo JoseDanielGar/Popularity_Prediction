@@ -48,19 +48,13 @@ stages:
     deps:
     - path: data/train/X_train.csv
       hash: md5
-      md5: 83caf9d917b3c75bdc6afde9bc4a40f4
-      size: 12983275
+      md5: 4d2b113aef57941b8fdbe3a5588caefd
+      size: 11672014
     - path: data/train/y_train.csv
       hash: md5
       md5: 50be38aead690f37a09f071305f6d018
       size: 255405
     - path: src/model/train.py
       hash: md5
-      md5: 2e5f17f984f59c9122db86eaff2a85ac
-      size: 7928
-    outs:
-    - path: models
-      hash: md5
-      md5: 89d4a955b3fc0c54d00bd818b16d08e0.dir
-      size: 8697214
-      nfiles: 1
+      md5: 89f6abb0729c59b0b4879c23cefe979e
+      size: 8043
