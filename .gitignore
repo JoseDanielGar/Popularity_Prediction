@@ -32,3 +32,4 @@ mlruns
 
 /models
 /src/model/trained
+src/modelo_popularidad.egg-info
