@@ -114,7 +114,7 @@ def predict_popularity(input: InputFeatures) -> PredictionOutput:
 PIPELINE = initialize_pipeline()
 print("✓ Modelo cargado exitosamente!")
 print(f"  • Modelo: {type(PIPELINE['model']).__name__}")
-data = {
+""" data = {
   "duration_ms": [230666],
   "explicit": [False],
   "danceability": [0.676],
@@ -138,4 +138,4 @@ y_pred, y_proba = predict_multiclass_popularity(df)
 print(y_pred)
 print(y_proba)
 popularity = predict_popularity(data)
-print(popularity)
+print(popularity) """
