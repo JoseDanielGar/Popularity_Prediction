@@ -5,6 +5,7 @@ __pycache__/
 
 # Virtual envs
 .venv/
+.venv.*/
 
 # DVC cache/temp (code keeps only .dvc pointers)
 .dvc/tmp/
@@ -31,3 +32,5 @@ mlruns
 
 
 /models
+/src/model/trained
+src/modelo_popularidad.egg-info

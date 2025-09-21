@@ -1,16 +1,16 @@
 stages:
   cleaning:
-    cmd: python src/cleaning.py data/raw/dataset.csv
+    cmd: python src/data/cleaning.py
     deps:
     - data/raw/dataset.csv
-    - src/cleaning.py
+    - src/data/cleaning.py
     outs:
     - data/prep
   prepare:
-    cmd: python src/prepare.py data/prep/dataset_cleaned.csv
+    cmd: python src/data/prepare.py
     deps:
     - data/prep/dataset_cleaned.csv
-    - src/prepare.py
+    - src/data/prepare.py
     params:
     - prepare.seed
     - prepare.split
@@ -18,10 +18,8 @@ stages:
     - data/train
     - data/test
   train:
-    cmd: python src/train_xgboost_classifier.py
+    cmd: python src/model/train.py
     deps:
     - data/train/X_train.csv
     - data/train/y_train.csv
-    - src/train_xgboost_classifier.py
-    outs:
-    - models
+    - src/model/train.py
