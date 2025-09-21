@@ -14,13 +14,19 @@ prepare:
 train:
   x_train_path: data/train/X_train.csv
   y_train_path: data/train/y_train.csv
+  x_test_path: data/test/X_test.csv
+  y_test_path: data/test/y_test.csv
   model_output_path: models
   params:
-    colsample_bytree: 0.6
-    learning_rate: 0.3
-    max_depth: 9
-    min_child_weight: 1
+    objective: 'multi:softprob'
+    enable_categorical: False
+    eval_metric: 'mlogloss'
+    learning_rate: 0.2
+    max_depth: 7
     n_estimators: 300
+    use_label_encoder: False
+    colsample_bytree: 0.6
+    min_child_weight: 1
     subsample: 1.0
   cv_folds: 5
   seed: 20250901

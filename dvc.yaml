@@ -18,10 +18,10 @@ stages:
     - data/train
     - data/test
   train:
-    cmd: python src/train_xgboost_classifier.py
+    cmd: python src/train.py
     deps:
     - data/train/X_train.csv
     - data/train/y_train.csv
-    - src/train_xgboost_classifier.py
+    - src/train_classifier.py
     outs:
     - models
