@@ -1,6 +1,6 @@
 import logging
 
-from model.config.core import PACKAGE_ROOT, config
+from config.core import PACKAGE_ROOT, config
 
 # Aquí definimos un logger para el paquete, y usamos solamente el 
 # NullHandler para no restringir los logger para las aplicaciones que 
