@@ -1,13 +1,13 @@
 stages:
   cleaning:
-    cmd: python src/data/cleaning.py data/raw/dataset.csv
+    cmd: python src/data/cleaning.py
     deps:
     - data/raw/dataset.csv
     - src/data/cleaning.py
     outs:
     - data/prep
   prepare:
-    cmd: python src/data/prepare.py data/prep/dataset_cleaned.csv
+    cmd: python src/data/prepare.py
     deps:
     - data/prep/dataset_cleaned.csv
     - src/data/prepare.py

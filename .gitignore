@@ -31,3 +31,4 @@ mlruns
 
 
 /models
+/src/model/trained

@@ -103,13 +103,15 @@ df_test=X_test.copy()
 
 df_train['popularity']=y_train['popularity']
 df_test['popularity']=y_test['popularity']
-df_train['popularity_cat']=df_train.groupby('track_genre', group_keys=False).apply(categorize_popularity)
-df_filtrado = df_train.groupby("track_genre").filter(lambda x: len(x) > 5)
-df_test['popularity_cat']=df_test.groupby('track_genre', group_keys=False).apply(categorize_popularity)
+df_train['popularity_cat']=df_train.groupby('track_genre_Ordinal_Encoding__track_genre', group_keys=False).apply(categorize_popularity)
+df_filtrado = df_train.groupby("track_genre_Ordinal_Encoding__track_genre").filter(lambda x: len(x) > 5)
+df_test['popularity_cat']=df_test.groupby('track_genre_Ordinal_Encoding__track_genre', group_keys=False).apply(categorize_popularity)
 X_train_c=df_train.drop(['popularity', 'popularity_cat'], axis=1)
 X_test_c=df_test.drop(['popularity', 'popularity_cat'], axis=1)
 y_train_c=df_train['popularity_cat']
 y_test_c=df_test['popularity_cat']
+
+print(X_train_c.head())
 
 print("ENTRENAMIENTO DEL MODELO")
 print("=" * 50)

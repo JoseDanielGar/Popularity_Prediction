@@ -6,6 +6,7 @@ cleaning:
 
 prepare:
   input_path: data/prep/dataset_cleaned.csv
+  output_processor_path: src/model/trained
   output_path_train: data/train
   output_path_test: data/test
   split: 0.20
@@ -16,7 +17,7 @@ train:
   y_train_path: data/train/y_train.csv
   x_test_path: data/test/X_test.csv
   y_test_path: data/test/y_test.csv
-  model_output_path: models
+  model_output_path: src/model/trained
   params:
     objective: 'multi:softprob'
     enable_categorical: False
