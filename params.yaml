@@ -6,7 +6,28 @@ cleaning:
 
 prepare:
   input_path: data/prep/dataset_cleaned.csv
+  output_processor_path: src/model/trained
   output_path_train: data/train
   output_path_test: data/test
   split: 0.20
+  seed: 20250901
+
+train:
+  x_train_path: data/train/X_train.csv
+  y_train_path: data/train/y_train.csv
+  x_test_path: data/test/X_test.csv
+  y_test_path: data/test/y_test.csv
+  model_output_path: src/model/trained
+  params:
+    objective: 'multi:softprob'
+    enable_categorical: False
+    eval_metric: 'mlogloss'
+    learning_rate: 0.2
+    max_depth: 7
+    n_estimators: 300
+    use_label_encoder: False
+    colsample_bytree: 0.6
+    min_child_weight: 1
+    subsample: 1.0
+  cv_folds: 5
   seed: 20250901

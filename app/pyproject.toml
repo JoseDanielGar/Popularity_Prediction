@@ -1,0 +1,22 @@
+[project]
+name = "song-popularity-app"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Jorge Sarmiento",email = "jl.sarmiento10@uniandes.edu.co"},
+    {name = "Valentina",email = "v.narino@uniandes.edu.co"},
+    {name = "Juana Mendoza Santamaría",email = "jv.mendoza@uniandes.edu.co"},
+    {name = "Jose Daniel Garcia",email = "jd.garciad1@uniandes.edu.co"},
+    {name = "Mario Reyes Ojeda",email = "m.reyeso@uniandes.edu.co"},
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi (>=0.116.2,<0.117.0)",
+    "uvicorn (>=0.35.0,<0.36.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

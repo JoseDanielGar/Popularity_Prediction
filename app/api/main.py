@@ -1,5 +1,7 @@
 from fastapi import FastAPI, status
 from fastapi.middleware.cors import CORSMiddleware
+from model.predict import predict_popularity, InputFeatures, PredictionOutput
+
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 app = FastAPI()
@@ -22,17 +24,18 @@ class SongFeatures(BaseModel):
 
 @app.post("/api/predict")
 def predict(features: SongFeatures):
-    # Mock simple scoring logic
-    score = (
-        features.danceability * 0.35
-        + features.energy * 0.25
-        + features.valence * 0.20
-        + (1 - features.acousticness) * 0.10
-        + (1 - features.instrumentalness) * 0.07
-        + ((features.tempo - 50) / 150) * 0.03
+    # Convert to InputFeatures dataclass
+    features = InputFeatures(
+        danceability=features.danceability,
+        energy=features.energy,
+        acousticness=features.acousticness,
+        instrumentalness=features.instrumentalness,
+        valence=features.valence,
+        tempo=features.tempo
     )
-    score = max(0, min(1, score))
-    return {"score": score}
+    prediction: PredictionOutput = predict_popularity(features)
+
+    return {"predicted_popularity": prediction}
 
 
 @app.get("/api/health")
