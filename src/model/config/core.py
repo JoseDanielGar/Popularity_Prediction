@@ -4,11 +4,12 @@ from typing import Dict, List, Optional, Sequence
 from pydantic import BaseModel
 from strictyaml import YAML, load
 
-import model
+import config
 
 # Project Directories
-PACKAGE_ROOT = Path(model.__file__).resolve().parent
-ROOT = PACKAGE_ROOT.parent
+CONFIG_ROOT = Path(config.__file__).resolve().parent
+PACKAGE_ROOT = CONFIG_ROOT.parent
+ROOT = PACKAGE_ROOT.parent.parent
 CONFIG_FILE_PATH = PACKAGE_ROOT / "config.yml"
 DATASET_DIR = PACKAGE_ROOT / "datasets"
 TRAINED_MODEL_DIR = PACKAGE_ROOT / "trained"
@@ -30,7 +31,6 @@ class ModelConfig(BaseModel):
 
     target: str
     features: List[str]
-    temp_features: List[str]
     qual_vars: List[str]
     categorical_vars: Sequence[str]
     qual_mappings: Dict[str, int]
@@ -39,8 +39,8 @@ class ModelConfig(BaseModel):
 class Config(BaseModel):
     """Master config object."""
 
-    app_config: AppConfig
-    model_config: ModelConfig
+    app_configs: AppConfig
+    model_configs: ModelConfig
 
 
 def find_config_file() -> Path:
@@ -70,8 +70,8 @@ def create_and_validate_config(parsed_config: YAML = None) -> Config:
 
     # specify the data attribute from the strictyaml YAML type.
     _config = Config(
-        app_config=AppConfig(**parsed_config.data),
-        model_config=ModelConfig(**parsed_config.data),
+        app_configs=AppConfig(**parsed_config.data),
+        model_configs=ModelConfig(**parsed_config.data),
     )
 
     return _config

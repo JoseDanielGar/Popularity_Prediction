@@ -2,25 +2,25 @@ import numpy as np
 import pickle
 import joblib
 from sklearn.pipeline import Pipeline
-from model.config.core import config, PACKAGE_ROOT
+from config.core import config, ROOT
 
 def load_model():
     """Load the pre-trained model from disk."""
-    with open(PACKAGE_ROOT / 'models/modelo_popularidad.pkl', 'rb') as model_file:
+    with open(ROOT / 'models/modelo_popularidad.pkl', 'rb') as model_file:
         model = pickle.load(model_file)
     return model
 
 def load_scalers():
     """Load the pre-trained scalers from disk."""
-    with open(PACKAGE_ROOT / 'data/train/scalers.pkl', 'rb') as scalers_file:
+    with open(ROOT / 'data/train/scalers.joblib', 'rb') as scalers_file:
         scalers = joblib.load(scalers_file)
-    return scalers['X']
+    return scalers
 
 def load_encoders():
     """Load the pre-trained encoders from disk."""
-    with open(PACKAGE_ROOT / 'data/train/encoders.pkl', 'rb') as encoders_file:
+    with open(ROOT / 'data/train/encoders.joblib', 'rb') as encoders_file:
         encoders = joblib.load(encoders_file)
-    return encoders['categorical'], encoders['ordinal']
+    return encoders
 
 def initialize_pipeline() -> Pipeline:  
   """
@@ -31,23 +31,29 @@ def initialize_pipeline() -> Pipeline:
   """
   model = load_model()
   scalers = load_scalers()
-  categorical_encoder, ordinal_encoder = load_encoders()
+  encoders = load_encoders()
 
-  pipeline_steps = {
-    'scalers': scalers,
-    'categorical_encoder': categorical_encoder,
-    'ordinal_encoder': ordinal_encoder,
-    'model': model
-  }
+  scalers['duration_ms_scaler'].transform([[73]])
+  scalers['loudness_scaler'].transform([[-6.746]])
+  scalers['tempo_scaler'].transform([[87.917]])
+
+  encoders['key_label_encoder'].transform(['1'])
+  encoders['track_genre_label_encoder'].transform(['acoustic'])
+
+  pipeline_steps = [
+    #('duration_ms_scaler', scalers['duration_ms_scaler']),
+    #('loudness_scaler', scalers['loudness_scaler']),
+    #('tempo_scaler', scalers['tempo_scaler']),
+    #('key_label_encoder', encoders['key_label_encoder']),
+    #('track_genre_label_encoder', encoders['track_genre_label_encoder']),
+    ('model', model)
+  ]
 
   pipeline = Pipeline(steps=pipeline_steps)
 
   return pipeline
 
-# Load the pre-trained model
-PIPELINE = initialize_pipeline()
-print("✓ Modelo cargado exitosamente!")
-print(f"  • Modelo: {type(PIPELINE['model']).__name__}")
+
 def predict_multiclass(input_array: np.ndarray):
   """
   Predicts a multiclass output and their corresponding probabilities using a pre-trained model.
@@ -69,3 +75,12 @@ def predict_multiclass(input_array: np.ndarray):
   predicted_class = PIPELINE.predict(input_array)
 
   return predicted_class, probabilities
+
+
+# Load the pre-trained model
+PIPELINE = initialize_pipeline()
+print("✓ Modelo cargado exitosamente!")
+print(f"  • Modelo: {type(PIPELINE['model']).__name__}")
+print(PIPELINE)
+y_pred = PIPELINE.predict(np.array([[230666,False,0.676,0.461,1,-6.746,0,0.143,0.0322,1.01e-06,0.358,0.715,87.917,4,'acoustic']]))  # Example prediction
+print(y_pred)
