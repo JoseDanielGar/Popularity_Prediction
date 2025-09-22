@@ -2,7 +2,7 @@ import numpy as np
 import pickle
 import joblib
 from sklearn.pipeline import Pipeline
-from config.core import PACKAGE_ROOT
+from model.config.core import PACKAGE_ROOT
 import pandas as pd
 from typing import TypedDict
 

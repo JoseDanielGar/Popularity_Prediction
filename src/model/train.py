@@ -4,8 +4,6 @@ import os
 import warnings
 import yaml
 
-from sklearn.model_selection import cross_val_score
-
 from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, classification_report, precision_score, recall_score, roc_auc_score
 from xgboost import XGBClassifier
 import numpy as np

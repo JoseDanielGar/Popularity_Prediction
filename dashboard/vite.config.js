@@ -14,7 +14,8 @@ export default defineConfig({
     host: true,
     proxy: {
       "/api": {
-        target: import.meta.API_URL,
+        // target: import.meta.API_URL,
+        target: "http://localhost:8000",
         changeOrigin: true,
       },
     },

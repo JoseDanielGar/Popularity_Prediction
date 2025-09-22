@@ -134,11 +134,11 @@ import { callApi } from "./composables/useApi.js";
 
 async function handlePredict(values) {
   const apiResult = await callApi(values);
-  if (apiResult && apiResult.score !== undefined) {
-    result.value = { score: apiResult.score };
+  if (apiResult && apiResult.class !== undefined) {
+    result.value = { class: apiResult.class };
   } else {
     // fallback if API fails
-    result.value = { score: calculatePopularity(values) };
+    result.value = { class: "Model not available" };
   }
   screen.value = "result";
 }

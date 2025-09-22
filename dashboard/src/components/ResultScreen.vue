@@ -39,18 +39,22 @@
 <script setup>
 const props = defineProps({ result: Object, relevanceData: Array })
 
-const score = props.result?.score ?? 0
+const class_label = props.result.class
 let classification = ''
 let colorClasses = ''
 
-if (score < 0.45) {
+console.log(props.result)
+
+if (class_label === "Baja") {
   classification = 'Low'
   colorClasses = 'bg-red-900/50 text-red-400'
-} else if (score < 0.70) {
+} else if (class_label === "Media") {
   classification = 'Medium'
   colorClasses = 'bg-yellow-900/50 text-yellow-400'
-} else {
+} else if (class_label === "Alta") {
   classification = 'High'
   colorClasses = 'bg-green-900/50 text-green-400'
+}else {
+  colorClasses = 'bg-gray-900/50 text-gray-400'
 }
 </script>

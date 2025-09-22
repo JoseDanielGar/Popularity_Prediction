@@ -4,10 +4,8 @@ from typing import Dict, List, Optional, Sequence
 from pydantic import BaseModel
 from strictyaml import YAML, load
 
-import config
-
 # Project Directories
-CONFIG_ROOT = Path(config.__file__).resolve().parent
+CONFIG_ROOT = Path(__file__).resolve().parent
 PACKAGE_ROOT = CONFIG_ROOT.parent
 ROOT = PACKAGE_ROOT.parent.parent
 CONFIG_FILE_PATH = PACKAGE_ROOT / "config.yml"
@@ -77,4 +75,4 @@ def create_and_validate_config(parsed_config: YAML = None) -> Config:
     return _config
 
 
-config = create_and_validate_config()
+config_model = create_and_validate_config()
