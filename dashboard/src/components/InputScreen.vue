@@ -23,6 +23,24 @@ const keyOptions = [
   "B (Si)",
 ];
 
+const genreOptions = [
+  "acoustic",
+  "punk-rock",
+  "progressive-house",
+  "power-pop",
+  "pop",
+  "pop-film",
+  "piano",
+  "party",
+  "pagode",
+  "opera",
+  "new-age",
+  "mpb",
+  "minimal-techno",
+  "metalcore",
+  "metal",
+];
+
 function formatValue(slider) {
   const decimalsMap = { duration_ms: 0, tempo: 1, loudness: 1 };
   const decimals = decimalsMap[slider.id] ?? 2;
@@ -169,6 +187,7 @@ function predict() {
       </div>
 
       <!-- Track Genre -->
+      <!-- 
       <div class="md:col-span-2">
         <label class="block text-neutral-300 mb-1">Track Genre</label>
         <input
@@ -181,6 +200,24 @@ function predict() {
         <small class="text-neutral-400"
           >Example: pop, rock, metal, hip hop...</small
         >
+      </div>
+      -->
+      <!-- Track Genre -->
+      <div class="md:col-span-2">
+        <label for="track_genre" class="font-medium text-neutral-300">
+          Track Genre
+        </label>
+        <select
+          id="track_genre"
+          v-model="localCategories.track_genre"
+          @change="updateCategories"
+          class="custom-select w-full bg-neutral-800 text-white font-bold rounded-lg px-3 py-2 focus:ring-2 focus:ring-[#008f11]"
+        >
+          <option disabled value="">Select a genre</option>
+          <option v-for="genre in genreOptions" :key="genre" :value="genre">
+            {{ genre }}
+          </option>
+        </select>
       </div>
     </div>
 
