@@ -66,7 +66,6 @@ function predict() {
     ...Object.fromEntries(localSliders.map((s) => [s.id, s.value])),
     ...localCategories,
   };
-  console.log("Datos enviados para predicción:", values);
   emit("predict", values);
 }
 </script>

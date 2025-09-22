@@ -133,9 +133,7 @@ function calculatePopularity(values) {
 import { callApi } from "./composables/useApi.js";
 
 async function handlePredict(values) {
-  console.log("Valores recibidos en App.vue:", values);
   const apiResult = await callApi(values);
-  console.log("Respuesta cruda de la API:", apiResult);
   if (apiResult && apiResult.class !== undefined) {
     result.value = { class: apiResult.class };
   } else {
