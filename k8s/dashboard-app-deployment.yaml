@@ -23,7 +23,7 @@ spec:
           - name: PORT
             value: "3000"
           - name: API_URL
-            value: "http://song-popularity-service:3000"
+            value: ${AWS_REGISTRY}
         livenessProbe:
           httpGet:
             path: /

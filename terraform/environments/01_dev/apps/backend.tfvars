@@ -1,4 +1,4 @@
 region  = "us-east-1"
 key     = "apps/terraform.tfstate"
 encrypt = true
-bucket  = "terraform-dann-mreyesoj"
+bucket  = "terraform-songp-model"

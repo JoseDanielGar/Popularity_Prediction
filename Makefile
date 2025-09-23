@@ -35,16 +35,17 @@ eksconfig:
 
 
 # apply k8s manifests to the EKS cluster
-eksapply: eksconfig eksingress
-	envsubst < "$(shell pwd)/k8s/users-app-deployment.yaml" | kubectl apply -f -
-	envsubst < "$(shell pwd)/k8s/offers-app-deployment.yaml" | kubectl apply -f -
+#eksapply: eksconfig eksingress
+eksapply:
+	envsubst < "$(shell pwd)/k8s/dashboard-app-deployment.yaml" | kubectl apply -f -
+	envsubst < "$(shell pwd)/k8s/song-popularity-api-deployment.yaml" | kubectl apply -f -
 	kubectl apply -f $(shell pwd)/k8s/ingress.yaml
 
 # delete all k8s resources from the EKS cluster
 eksdestroy:
-	 kubectl delete -f $(shell pwd)/k8s/ingress.yaml
-	envsubst < "$(shell pwd)/k8s/users-app-deployment.yaml" | kubectl delete -f -
-	envsubst < "$(shell pwd)/k8s/offers-app-deployment.yaml" | kubectl delete -f -
+	kubectl delete -f $(shell pwd)/k8s/ingress.yaml
+	envsubst < "$(shell pwd)/k8s/dashboard-app-deployment.yaml" | kubectl delete -f -
+	envsubst < "$(shell pwd)/k8s/song-popularity-api-deployment.yaml" | kubectl delete -f -
 
 # install nginx ingress controller on EKS
 eksingress:
