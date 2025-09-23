@@ -4,18 +4,19 @@ import path from "path";
 
 export default defineConfig({
   plugins: [vue()],
+  base: "/",
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
   server: {
     port: 5173,
     host: true,
+    allowedHosts: true,
     proxy: {
       "/api": {
-        // target: import.meta.API_URL,
-        target: "http://localhost:8000",
+        target: process.env.API_URL || "http://localhost:8080",
         changeOrigin: true,
       },
     },
