@@ -16,14 +16,14 @@ spec:
     spec:
       containers:
       - name: dashboard-app
-        image: ${AWS_REGISTRY}dashboard:1.0.0
+        image: ${AWS_REGISTRY}dashboard:1.0.1
         ports:
         - containerPort: 3000
         env:
           - name: PORT
             value: "3000"
           - name: API_URL
-            value: ${AWS_REGISTRY}
+            value: ${API_URL}
         livenessProbe:
           httpGet:
             path: /
