@@ -62,19 +62,3 @@ eksdeleteingress:
 # watch for the external url of the ingress controller
 eksingressurl:
 	kubectl get svc -n ingress-nginx ingress-nginx-controller -w
-
-miniapply:
-	envsubst < "$(shell pwd)/k8s/dashboard-app-deployment.yaml" | kubectl apply -f -
-	envsubst < "$(shell pwd)/k8s/song-popularity-api-deployment.yaml" | kubectl apply -f -
-
-# delete all k8s resources from minikube
-minidestroy:
-	envsubst < "$(shell pwd)/k8s/dashboard-app-deployment.yaml" | kubectl delete -f -
-	envsubst < "$(shell pwd)/k8s/song-popularity-api-deployment.yaml" | kubectl delete -f -
-
-
-cleanup:
-	minikube image rm docker.io/library/${APP_NAME}:${APP_VERSION}
-	docker rmi -f ${APP_NAME}:${APP_VERSION}
-	docker build --rm --no-cache --platform linux/amd64 -t ${APP_NAME}:${APP_VERSION} --label version=${APP_VERSION} -f ${DIR}/Dockerfile ${DIR}
-	minikube image load ${APP_NAME}:${APP_VERSION}
