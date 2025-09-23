@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: song-popularity-api
-        image: ${AWS_REGISTRY}song-popularity-api:1.0.0
+        image: ${AWS_REGISTRY}song-popularity-api:1.0.3
         ports:
         - containerPort: 3000
         env:
