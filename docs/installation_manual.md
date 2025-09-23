@@ -1,11 +1,14 @@
-# Despliegue de Dashboard y Modelo
+# 🎵 Manual de instalación
 
-- [Despliegue de Dashboard y Modelo](#despliegue-de-dashboard-y-modelo)
+- [🎵 Manual de instalación](#-manual-de-instalación)
   - [Introducción](#introducción)
   - [Herramientas](#herramientas)
   - [Pasos](#pasos)
   - [Acceso](#acceso)
   - [Pruebas](#pruebas)
+    - [1. Prueba para una predicción alta:](#1-prueba-para-una-predicción-alta)
+    - [2. Prueba para una predicción media:](#2-prueba-para-una-predicción-media)
+    - [3. Prueba para una predicción baja:](#3-prueba-para-una-predicción-baja)
 
 ## Introducción
 
@@ -92,3 +95,84 @@ curl -X 'POST' \
     "track_genre": "pop"
   }'
 ```
+
+### 1. Prueba para una predicción alta:
+
+```bash
+curl -X 'POST' \
+  '[URL_DEL_API]/api/predict' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "duration_ms": 210000,
+    "explicit": false,
+    "danceability": 0.35,
+    "energy": 0.25,
+    "key": 0,
+    "loudness": -12.0,
+    "mode": 1,
+    "speechiness": 0.04,
+    "acousticness": 0.85,
+    "instrumentalness": 0.0000,
+    "liveness": 0.12,
+    "valence": 0.30,
+    "tempo": 72.0,
+    "time_signature": 3,
+    "track_genre": "acoustic"
+  }'
+```
+
+![Predicción alta](<img/Prueba 1 - alta.png>)
+
+### 2. Prueba para una predicción media:
+
+```bash
+curl -X 'POST' \
+  '[URL_DEL_API]/api/predict' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "duration_ms": 320000,
+    "explicit": false,
+    "danceability": 0.92,
+    "energy": 0.97,
+    "key": 9,
+    "loudness": -2.0,
+    "mode": 0,
+    "speechiness": 0.03,
+    "acousticness": 0.02,
+    "instrumentalness": 0.85,
+    "liveness": 0.35,
+    "valence": 0.55,
+    "tempo": 128.0,
+    "time_signature": 4,
+    "track_genre": "metal"
+  }'
+```
+
+![Predicción media](<img/Prueba 2 - media.png>)
+
+### 3. Prueba para una predicción baja:
+
+```bash
+curl -X 'POST' \
+  '[URL_DEL_API]/api/predict' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "duration_ms": 250000,
+    "explicit": false,
+    "danceability": 0.75,
+    "energy": 0.88,
+    "key": 7,
+    "loudness": -4.5,
+    "mode": 1,
+    "speechiness": 0.06,
+    "acousticness": 0.12,
+    "instrumentalness": 0.0001,
+    "liveness": 0.18,
+    "valence": 0.65,
+    "tempo": 124.0,
+    "time_signature": 4,
+    "track_genre": "pop"
+  }'
+```
+
+![Predicción baja](<img/Prueba 3 - baja.png>)
